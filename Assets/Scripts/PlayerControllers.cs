@@ -15,7 +15,6 @@ public class PlayerControllers : MonoBehaviour
     private Rigidbody2D rBody;
     private Animator anim;
     private bool isFacingRight = true;
-    private bool isCrouching = false;
 
 
     void Start()
@@ -41,17 +40,6 @@ public class PlayerControllers : MonoBehaviour
 
         rBody.velocity = new Vector2(horiz * speed, rBody.velocity.y);
 
-
-        // Check if sprite is crouching
-        if (isGrounded && rBody.velocity.x == 0 && Input.GetAxis("Vertical") < 0)
-        {
-            isCrouching = true;
-        }
-        else
-        {
-            isCrouching = false;
-        }
-
         // Check if sprite needs to be flipped
         if (isFacingRight && rBody.velocity.x < 0)
         {
@@ -62,8 +50,8 @@ public class PlayerControllers : MonoBehaviour
             Flip();
         }
 
-        Debug.Log("X Speed:" + Mathf.Abs(rBody.velocity.x));
-        Debug.Log("Y Speed:" + rBody.velocity.y);
+        //Debug.Log("X Speed:" + Mathf.Abs(rBody.velocity.x));
+        //Debug.Log("Y Speed:" + rBody.velocity.y);
 
         anim.SetFloat("xSpeed", Mathf.Abs(rBody.velocity.x));
         anim.SetFloat("ySpeed", rBody.velocity.y);
